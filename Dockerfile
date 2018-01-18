@@ -1,6 +1,6 @@
 FROM alexcheng/apache2-php7:7.1.11
 
-MAINTAINER Cédric Loubié <cloubie@siliconsalad.com>
+MAINTAINER Fu Cheng <alexcheng1982@gmail.com>
 
 RUN a2enmod rewrite
 
@@ -10,8 +10,8 @@ RUN rm -rf /var/www/html/* \
     && apt-get update \
     && apt-get install -y wget
 
-ADD /host/user/cloubie/workspace/docker-magento2/Magento-EE-2.2.2 /tmp
-RUN mv /tmp/Magento-EE-2.2.2/* /var/www/html
+RUN cd /tmp && curl https://codeload.github.com/magento/magento2/tar.gz/$MAGENTO_VERSION -o $MAGENTO_VERSION.tar.gz && tar xvf $MAGENTO_VERSION.tar.gz && mv magento2-$MAGENTO_VERSION/* magento2-$MAGENTO_VERSION/.htaccess /var/www/html
+
 
 RUN curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer
