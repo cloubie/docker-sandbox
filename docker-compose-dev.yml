@@ -14,12 +14,5 @@ services:
       - db-data:/var/lib/mysql/data
     env_file:
       - env
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin
-    ports:
-      - "8580:80"
-    links:
-      - db     
 volumes:
   db-data: 
