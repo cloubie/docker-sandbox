@@ -26,6 +26,7 @@ RUN rm -rf /var/www/html/* \
 
 RUN curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer
+
 RUN requirements="libpng12-dev libmcrypt-dev libmcrypt4 libcurl3-dev libfreetype6 libjpeg-turbo8 libjpeg-turbo8-dev libpng12-dev libfreetype6-dev libicu-dev libxslt1-dev" \
     && apt-get install -y $requirements \
     && rm -rf /var/lib/apt/lists/* \
@@ -44,7 +45,5 @@ RUN requirements="libpng12-dev libmcrypt-dev libmcrypt4 libcurl3-dev libfreetype
 RUN echo "memory_limit=1024M" > /usr/local/etc/php/conf.d/memory-limit.ini
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-RUN if [ -d "$MAGENTO_PROJECT_PATH"]; then docker run -v ; fi
 
 WORKDIR /var/www/html
